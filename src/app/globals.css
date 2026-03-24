@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-charcoal: #0c0c0d;
+  --color-ink: #111113;
+  --color-card: #1d1c21;
+  --color-muted: #6f6f7b;
+  --color-highlight: #ffe156;
+  --color-highlight-dark: #f5c518;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: radial-gradient(circle at top, rgba(255, 209, 92, 0.12), transparent 50%),
+      var(--color-charcoal);
+    color: #f7f7f5;
+    min-height: 100vh;
+    font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-display), var(--font-sans), "Space Grotesk", sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: var(--color-highlight);
+    color: #0d0d0f;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: rgba(22, 22, 27, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    box-shadow: 0 25px 50px rgba(5, 5, 7, 0.65);
+  }
+
+  .section-shell {
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(11, 11, 12, 0.75);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .input {
+    @apply rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-base text-white placeholder:text-white/40 focus:border-brand-primary focus:ring-brand-primary;
+  }
+}
