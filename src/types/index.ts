@@ -14,6 +14,7 @@ export type Product = {
     colors: string;
   };
   capsuleTypes: string;
+  imageUrl?: string; // optional; fallback to /products/{sku}.jpg if missing
 };
 
 export type OrderItem = {

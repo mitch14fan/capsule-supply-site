@@ -445,6 +445,15 @@ type ProductCardProps = {
 
 function ProductCard({ product, onAdd }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1);
+  const imgSrc = product.imageUrl || `/products/${product.sku}.jpg`;
+  const handleImgError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    // Fallback to a lightweight placeholder shipped in /public
+    const target = e.currentTarget;
+    if (target.dataset.fallbackApplied) return;
+    target.dataset.fallbackApplied = "1";
+    target.src = "/vercel.svg";
+    target.classList.add("object-contain", "p-6", "bg-black/20");
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -460,6 +469,16 @@ function ProductCard({ product, onAdd }: ProductCardProps) {
           <h3 className="text-xl font-semibold text-white">{product.name}</h3>
         </div>
         <span className="rounded-full border border-white/15 px-3 py-1 text-xs font-semibold text-white/80">{product.sku}</span>
+      </div>
+
+      <div className="overflow-hidden rounded-xl border border-white/10 bg-black/20">
+        <img
+          src={imgSrc}
+          alt={`${product.name} preview`}
+          onError={handleImgError}
+          loading="lazy"
+          className="h-40 w-full object-cover"
+        />
       </div>
 
       <dl className="grid grid-cols-2 gap-3 text-sm text-white/70">
